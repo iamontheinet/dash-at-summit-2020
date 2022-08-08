@@ -10,6 +10,10 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
 
  As ACCOUNTADMIN, create the following objects:
 
+ ```sql
+ USE ROLE ACCOUNTADMIN;
+ ```
+
 * Create table BUDGET_ALLOCATIONS_AND_ROI that holds the last six months of budget allocations and ROI
 
   ```sql
@@ -153,16 +157,18 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   );
 
   -- NOTE: To test the above masking policy, run the follwing queries. When using ACCOUNTADMIN role you should see plain-text values for all the columns. When using DASH_DS role you should see "***MASKED***" values for AD_ID, CHANNEL, IPADDRESS, and MACADDRESS columns.
-  use role ACCOUNTADMIN;
-  select * from CLICK_DATA limit 10;
+  USE ROLE ACCOUNTADMIN;
+  SELECT * from CLICK_DATA limit 10;
 
-  use role DASH_DS;
-  select * from CLICK_DATA limit 10;
+  USE ROLE DASH_DS;
+  SELECT * from CLICK_DATA limit 10;
   ```
 
 * Create new user and assign role DASH_DS. You will use this user to connect to Snowflake from the Notebook. ***NOTE***: It might be better to create this user from Snowsight via Admin GUI.
 
   ```sql
+  USE ROLE ACCOUNTADMIN;
+
   CREATE OR REPLACE user <USER_NAME>
 
   GRANT ROLE DASH_DS to USER <USER_NAME>;
@@ -201,7 +207,7 @@ The notebook...
 
 ### **Step 6** -- Run Streamlit app
 
-In a terminal window, run the [Streamlit app](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/Snowpark_Streamlit_Revenue_Prediction.py) by executing `streamlit run Snowpark_Streamlit_Revenue_Prediction.py` 
+In a terminal window, run the [Streamlit app](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/Snowpark_Streamlit_Revenue_Prediction.py) by executing `streamlit run Snowpark_Streamlit_Revenue_Prediction.py`
 
 If all goes well, you should the following app in your browser window.
 
