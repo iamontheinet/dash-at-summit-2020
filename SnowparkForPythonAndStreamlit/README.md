@@ -2,6 +2,10 @@
 
 This is the same demo that was presented during the [Snowflake Summit Opening Keynote](https://events.snowflake.com/summit/agenda/session/849836) and adapted for the demo in the keynote at Snowflake Data Cloud World Tour (DCWT)
 
+## Prereq
+
+* Access to Snowflake Enterprise account
+
 ## Usage
 
 ### **Step 1** -- Setup Tables, Users, Roles, and Tag-based Masking Policy
