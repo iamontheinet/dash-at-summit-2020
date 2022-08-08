@@ -6,9 +6,9 @@ This is the same demo that was presented during the [Snowflake Summit Opening Ke
 
 * Access to Snowflake Enterprise account
 
-## Usage
+## Setup
 
-### **Step 1** -- Setup Tables, Users, Roles, and Tag-based Masking Policy
+### **Step 1** -- Create Tables, Users, Roles, and Tag-based Masking Policy
 
 For the DCWT, we will need two users. One user with ACCOUNTADMIN role and another user with a role of a "Data Scientist", for example, DASH_DS. If you use a different role name, update code and scripts that follow accordingly.
 
@@ -178,7 +178,9 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   GRANT ROLE DASH_DS to USER <USER_NAME>;
   ```
 
-### **Step 2** -- Create Conda Environment
+## Usage
+
+### **Step 1** -- Create Conda Environment
 
 * `pip install conda`
 
@@ -188,7 +190,7 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
 
 * `conda activate snowpark`
 
-### **Step 3** -- Install Snowpark for Python and other libraries
+### **Step 2** -- Install Snowpark for Python and other libraries
 
 * `pip install "snowflake-snowpark-python[pandas]"`
 
@@ -196,9 +198,9 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
 
 * `pip install scikit-learn`
 
-### **Step 4** -- Update [connection.json](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/connection.json) with your Snowflake account details and "Data Science" role credentials
+### **Step 3** -- Update [connection.json](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/connection.json) with your Snowflake account details and "Data Science" role credentials
 
-### **Step 5** -- Run through the [Jupyter notebook](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/Snowpark_For_Python.ipynb)
+### **Step 4** -- Run through the [Jupyter notebook](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/Snowpark_For_Python.ipynb)
 
 The notebook...
 
@@ -209,7 +211,7 @@ The notebook...
 * Creates a User-Defined Function (UDF) that uses the model for inference on new data points passed in as parameters
   * NOTE: This UDF is then called from the Streamlit app
 
-### **Step 6** -- Run Streamlit app
+### **Step 5** -- Run Streamlit app
 
 In a terminal window, run the [Streamlit app](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/Snowpark_Streamlit_Revenue_Prediction.py) by executing `streamlit run Snowpark_Streamlit_Revenue_Prediction.py`
 
