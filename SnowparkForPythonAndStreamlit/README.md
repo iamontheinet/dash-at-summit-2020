@@ -18,28 +18,6 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
  USE ROLE ACCOUNTADMIN;
  ```
 
-* Create table BUDGET_ALLOCATIONS_AND_ROI that holds the last six months of budget allocations and ROI
-
-  ```sql
-  CREATE or REPLACE TABLE BUDGET_ALLOCATIONS_AND_ROI (
-    MONTH varchar(30),
-    SEARCHENGINE integer,
-    SOCIALMEDIA integer,
-    VIDEO integer,
-    EMAIL integer,
-    ROI float
-  );
-
-  INSERT INTO BUDGET_ALLOCATIONS_AND_ROI (MONTH, SEARCHENGINE, SOCIALMEDIA, VIDEO, EMAIL, ROI)
-  VALUES
-  ('January',35,50,35,85,8.22),
-  ('February',75,50,35,85,13.90),
-  ('March',15,50,35,15,7.34),
-  ('April',25,80,40,90,13.23),
-  ('May',95,95,10,95,6.246),
-  ('June',35,50,35,85,8.22);
-  ```
-
 * Create table CLICK_DATA from raw clickstream data hosted on publicly accessible S3 bucket
 
   ```sql
@@ -112,6 +90,28 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
     from @monthly_revenue_data_stage;
   ```
 
+* Create table BUDGET_ALLOCATIONS_AND_ROI that holds the last six months of budget allocations and ROI
+
+  ```sql
+  CREATE or REPLACE TABLE BUDGET_ALLOCATIONS_AND_ROI (
+    MONTH varchar(30),
+    SEARCHENGINE integer,
+    SOCIALMEDIA integer,
+    VIDEO integer,
+    EMAIL integer,
+    ROI float
+  );
+
+  INSERT INTO BUDGET_ALLOCATIONS_AND_ROI (MONTH, SEARCHENGINE, SOCIALMEDIA, VIDEO, EMAIL, ROI)
+  VALUES
+  ('January',35,50,35,85,8.22),
+  ('February',75,50,35,85,13.90),
+  ('March',15,50,35,15,7.34),
+  ('April',25,80,40,90,13.23),
+  ('May',95,95,10,95,6.246),
+  ('June',35,50,35,85,8.22);
+  ```
+
 * Create stages required for Stored Procedures, UDFs, and saving model files
 
   ```sql
@@ -171,12 +171,12 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   SELECT * from CLICK_DATA limit 10;
   ```
 
-* Create new user and assign role DASH_DS. You will use this user to connect to Snowflake from the Notebook. ***NOTE***: It might be better to create this user from Snowsight via Admin GUI.
+* Create new user and assign role DASH_DS. ***IMP***: You will use this user to connect to Snowflake from the Notebook. ***NOTE***: It might be better to create this user from Snowsight via Admin GUI.
 
   ```sql
   USE ROLE ACCOUNTADMIN;
 
-  CREATE OR REPLACE user <NEW_USER_NAME>;
+  CREATE OR REPLACE user <NEW_USER_NAME> PASSWORD <password>;
 
   GRANT ROLE DASH_DS to USER <NEW_USER_NAME>;
   ```
