@@ -171,7 +171,9 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   SELECT * from CLICK_DATA limit 10;
   ```
 
-* Create new user and assign role DASH_DS. ***IMP***: You will use this user to connect to Snowflake from the Notebook. ***NOTE***: It might be better to create this user from Snowsight via Admin GUI.
+* Create new user and assign role DASH_DS. ***IMP***: You will use this user to connect to Snowflake from the Notebook. 
+
+   ***NOTE***: It might be better to create this user from Snowsight via Admin GUI.
 
   ```sql
   USE ROLE ACCOUNTADMIN;
