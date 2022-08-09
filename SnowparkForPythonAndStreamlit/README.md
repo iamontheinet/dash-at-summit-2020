@@ -161,6 +161,9 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   );
 
   -- NOTE: To test the above masking policy, run the follwing queries. When using ACCOUNTADMIN role you should see plain-text values for all the columns. When using DASH_DS role you should see "***MASKED***" values for AD_ID, CHANNEL, IPADDRESS, and MACADDRESS columns.
+
+  GRANT ROLE DASH_DS to USER <CURRENT_USER_NAME>;
+
   USE ROLE ACCOUNTADMIN;
   SELECT * from CLICK_DATA limit 10;
 
@@ -173,9 +176,9 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   ```sql
   USE ROLE ACCOUNTADMIN;
 
-  CREATE OR REPLACE user <USER_NAME>
+  CREATE OR REPLACE user <NEW_USER_NAME>;
 
-  GRANT ROLE DASH_DS to USER <USER_NAME>;
+  GRANT ROLE DASH_DS to USER <NEW_USER_NAME>;
   ```
 
 ## Usage
@@ -188,11 +191,13 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   
 * `conda create --name snowpark -c https://repo.anaconda.com/pkgs/snowflake python=3.8`
 
+### **Step 2** -- Install Snowpark for Python and other libraries in Conda environment
+
 * `conda activate snowpark`
 
-### **Step 2** -- Install Snowpark for Python and other libraries
-
 * `pip install "snowflake-snowpark-python[pandas]"`
+
+* `pip install notebook`
 
 * `pip install ipykernel`
 
@@ -202,18 +207,20 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
 
 ### **Step 4** -- Run through the [Jupyter notebook](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/Snowpark_For_Python.ipynb)
 
-The notebook...
+In a terminal window, browse to the folder where you have this Notebook downloaded and run `jupyter notebook`
+
+The notebook does the following...
 
 * Performs Exploratory Data Analysis (EDA)
 * Creates features for training a model and writes them to a Snowflake table
 * Creates a Stored Proc for training a ML model and uploads the model to a stage
 * Calls the Stored Proc to train the model
 * Creates a User-Defined Function (UDF) that uses the model for inference on new data points passed in as parameters
-  * NOTE: This UDF is then called from the Streamlit app
+  * NOTE: This UDF is called from the Streamlit app
 
 ### **Step 5** -- Run Streamlit app
 
-In a terminal window, run the [Streamlit app](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/Snowpark_Streamlit_Revenue_Prediction.py) by executing `streamlit run Snowpark_Streamlit_Revenue_Prediction.py`
+In a terminal window, browse to this folder where you have this file downloaded and run the [Streamlit app](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/Snowpark_Streamlit_Revenue_Prediction.py) by executing `streamlit run Snowpark_Streamlit_Revenue_Prediction.py`
 
 If all goes well, you should the following app in your browser window.
 
