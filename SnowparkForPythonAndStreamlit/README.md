@@ -1,6 +1,6 @@
 # Snowpark For Python -- Advertising Spend and ROI Prediction
 
-This is the same demo that was presented during the [Snowflake Summit Opening Keynote](https://events.snowflake.com/summit/agenda/session/849836) and adapted for the demo in the keynote at Snowflake Data Cloud World Tour (DCWT)
+This is the same demo that was presented during the [Snowflake Summit Opening Keynote](https://events.snowflake.com/summit/agenda/session/849836) and is now being adapted for the demo in the keynote at [Snowflake Data Cloud World Tour--DCWT](https://www.snowflake.com/data-cloud-world-tour/).
 
 ## Prereq
 
