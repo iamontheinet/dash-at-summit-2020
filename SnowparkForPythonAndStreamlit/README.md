@@ -142,23 +142,25 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
 * Create Tag-based Masking Policy for table CLICK_DATA
 
   ```sql
-  CREATE OR REPLACE tag clickstream;
+  -- IMP: If you have already created this tag and masking policy before, make sure to run the following SQL statements to reset everything first. If this is your first time, then you may skip this part and go ahead and create everything.
 
-  CREATE OR REPLACE masking policy MASK_ADDRESS as (val string) returns string ->
+  ALTER tag PII unset masking policy MASK_PII;
+  ALTER TABLE CLICK_DATA unset tag PII;
+  DROP tag IF EXISTS PII;
+  ```
+
+  ```sql
+  CREATE OR REPLACE tag PII;
+    
+  CREATE OR REPLACE masking policy MASK_PII as (val string) returns string ->
     case
       when current_role() IN ('ACCOUNTADMIN') then val
-      else '***MASKED***'
+      when current_role() IN ('DASH_DS') then '***MASKED***'
     end;
     
-  ALTER tag clickstream set
-    masking policy MASK_ADDRESS;
-    
-  ALTER TABLE CLICK_DATA set tag clickstream = 'tag-based policies';
+  ALTER tag PII set masking policy MASK_PII;
 
-  SELECT * from table (information_schema.policy_references(
-    ref_entity_domain => 'TABLE',
-    ref_entity_name => 'CLICK_DATA' )
-  );
+  ALTER TABLE CLICK_DATA set tag PII = 'tag-based policies';
 
   -- NOTE: To test the above masking policy, run the follwing queries. When using ACCOUNTADMIN role you should see plain-text values for all the columns. When using DASH_DS role you should see "***MASKED***" values for AD_ID, CHANNEL, IPADDRESS, and MACADDRESS columns.
 
