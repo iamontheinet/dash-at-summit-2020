@@ -141,9 +141,9 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
 
 * Create Tag-based Masking Policy for table CLICK_DATA
 
-  ```sql
-  -- IMP: If you have already created this tag and masking policy before, make sure to run the following SQL statements to reset everything first. If this is your first time, then you may skip this part and go ahead and create everything.
+  **IMP**: If you have already created this tag and masking policy before, make sure to run the following two ALTER and one DROP SQL statements to reset everything. If this is your first time, then you may skip this "reset" part and start creating everything.
 
+  ```sql
   ALTER tag PII unset masking policy MASK_PII;
   ALTER TABLE CLICK_DATA unset tag PII;
   DROP tag IF EXISTS PII;
@@ -162,7 +162,9 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
 
   ALTER TABLE CLICK_DATA set tag PII = 'tag-based policies';
 
-  -- NOTE: To test the above masking policy, run the follwing queries. When using ACCOUNTADMIN role you should see plain-text values for all the columns. When using DASH_DS role you should see "***MASKED***" values for AD_ID, CHANNEL, IPADDRESS, and MACADDRESS columns.
+  -- NOTE: To test the above masking policy, run the follwing queries. 
+  -- When using ACCOUNTADMIN role you should see plain-text values for all the columns. 
+  -- When using DASH_DS role you should see "***MASKED***" values for AD_ID, CHANNEL, IPADDRESS, and MACADDRESS columns.
 
   GRANT ROLE DASH_DS to USER <CURRENT_USER_NAME>;
 
