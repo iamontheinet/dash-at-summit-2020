@@ -187,7 +187,7 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   GRANT ROLE DASH_DS to USER <NEW_USER_NAME>;
   ```
 
-## Usage
+## Notebook and Streamlit App
 
 ### **Step 1** -- Create Conda Environment
 
