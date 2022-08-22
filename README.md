@@ -32,7 +32,7 @@ Snowpark For Python: [API Source Code](https://github.com/snowflakedb/snowpark-p
 
 For other developer resources, please visit https://developers.snowflake.com/. 
 
-## Meet Dash :) Follow him on [Twitter](https://twitter.com/iamontheinet) amd [LinkedIn](https://www.linkedin.com/in/dash-desai/)
+## Meet Dash :) 
 
 <p align="center">
   <img style="width: 200px;" src="assets/dash1.jpg">
@@ -40,4 +40,4 @@ For other developer resources, please visit https://developers.snowflake.com/.
   <img style="width: 200px;" src="assets/dash0.jpg">
 </p>
 
-
+Follow him on [Twitter](https://twitter.com/iamontheinet) and [LinkedIn](https://www.linkedin.com/in/dash-desai/)
