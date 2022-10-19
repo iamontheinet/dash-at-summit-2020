@@ -2,9 +2,15 @@
 
 This is the same demo that was presented during the [Snowflake Summit Opening Keynote](https://events.snowflake.com/summit/agenda/session/849836) and is now being adapted for the demo in the keynote at [Snowflake Data Cloud World Tour--DCWT](https://www.snowflake.com/data-cloud-world-tour/).
 
-## Prereq
+## Prerequisites
 
 * Access to Snowflake Enterprise account
+  * Login to your [Snowflake account](https://app.snowflake.com/) with the admin credentials that were created with the account in one browser tab (a role with ORGADMIN privileges). Keep this tab open during the workshop.
+    * Click on the **Billing** on the left side panel
+    * Click on [Terms and Billing](https://app.snowflake.com/terms-and-billing)
+    * Read and accept terms to continue with the workshop
+  * As ACCOUNTADMIN role
+    * Create a [Warehouse](https://docs.snowflake.com/en/sql-reference/sql/create-warehouse.html), a [Database](https://docs.snowflake.com/en/sql-reference/sql/create-database.html) and a [Schema](https://docs.snowflake.com/en/sql-reference/sql/create-schema.html)
 
 ## Setup
 
@@ -175,9 +181,9 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   SELECT * from CLICK_DATA limit 10;
   ```
 
-* Create new user and assign role DASH_DS. 
+* Create new user and assign role DASH_DS.
 
-   ***IMP***: You will use this user to connect to Snowflake from the Notebook. 
+   ***IMP***: You will use this user to connect to Snowflake from the Notebook.
 
   ```sql
   USE ROLE ACCOUNTADMIN;
@@ -189,7 +195,7 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
 
 ## Notebook and Streamlit App
 
-### **Step 1** -- Create Conda Environment
+### **Step 1** -- Create and Activate Conda Environment
 
 * `pip install conda`
 
@@ -197,23 +203,21 @@ For the DCWT, we will need two users. One user with ACCOUNTADMIN role and anothe
   
 * `conda create --name snowpark -c https://repo.anaconda.com/pkgs/snowflake python=3.8`
 
-### **Step 2** -- Install Snowpark for Python and other libraries in Conda environment
-
 * `conda activate snowpark`
 
-* `pip install "snowflake-snowpark-python[pandas]"`
+### **Step 2** -- Install Snowpark for Python and other libraries in Conda environment
 
-* `pip install notebook`
-
-* `pip install ipykernel`
-
-* `pip install scikit-learn`
+* `conda install -c https://repo.anaconda.com/pkgs/snowflake snowflake-snowpark-python pandas notebook scikit-learn streamlit`
 
 ### **Step 3** -- Update [connection.json](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/connection.json) with your Snowflake account details and "Data Science" role credentials
 
-### **Step 4** -- Run through the [Jupyter notebook](https://github.com/iamontheinet/dash-at-summit-2022/blob/main/SnowparkForPythonAndStreamlit/Snowpark_For_Python.ipynb)
+* Note: For the **account** parameter, specify your [account identifier](https://docs.snowflake.com/en/user-guide/admin-account-identifier.html) and do not include the snowflakecomputing.com domain name. Snowflake automatically appends this when creating the connection.
 
-In a terminal window, browse to the folder where you have this Notebook downloaded and run `jupyter notebook`
+### **Step 4** -- Train & deploy ML model
+
+* In a terminal window, browse to the folder where you have this Notebook downloaded and run `jupyter notebook` at the command line
+* Open and run through the [Jupyter notebook](Snowpark_For_Python.ipynb)
+  * Note: Make sure the Jupyter notebook (Python) kernel is set to ***snowpark***
 
 The notebook does the following...
 
