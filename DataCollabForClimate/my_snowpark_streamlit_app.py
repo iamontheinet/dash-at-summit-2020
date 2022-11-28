@@ -26,7 +26,11 @@ def create_session_object():
         session = st.session_state['snowpark_session']
 
     return session
-  
+
+# Add header and a subheader
+st.header("Knoema: Environment Data Atlas")
+st.subheader("Powered by Snowpark for Python and Snowflake Data Marketplace | Made with Streamlit")
+
 # Create Snowpark DataFrames that loads data from Knoema: Environmental Data Atlas
 def load_data(session):
     # CO2 Emissions by Country
@@ -45,10 +49,6 @@ def load_data(session):
     pd_df_co2  = snow_df_co2.to_pandas()
     pd_df_land = snow_df_land.to_pandas() 
     pd_df_waste = snow_df_waste.to_pandas()
-    
-    # Add header and a subheader
-    st.header("Knoema: Environment Data Atlas")
-    st.subheader("Powered by Snowpark for Python and Snowflake Data Marketplace | Made with Streamlit")
     
     # Use columns to display the three dataframes side-by-side along with their headers
     col1, col2, col3 = st.columns(3)
